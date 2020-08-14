@@ -1,4 +1,4 @@
-# File name: s001_c1.py
+# File name: s001_c001.py
 # Description: Cryptopals Set 1, Challenge 1 - Convert hex to base64
 # Author: Arya Muralidharan
 # Date: 2020-08-13
