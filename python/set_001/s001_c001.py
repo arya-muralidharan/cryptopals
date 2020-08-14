@@ -7,11 +7,14 @@
 # Always operate on raw bytes, never on encoded strings. 
 # Only use hex and base64 for pretty-printing.
 
+#---PACKAGES---#
 import base64
 
+
+#---FUNCTIONS---#
 def hex_to_base64(str):
     '''
-    Convert hex to base64.
+    Converts hex to base64.
 
     Inputs: 
         str: a string (in hex)
@@ -19,13 +22,14 @@ def hex_to_base64(str):
     Returns: a string (in base64)
     '''
     decoded = base64.b16decode(str, casefold=True)
-    encoded = base64.b64encode(decoded)
+    encoded = base64.b64encode(decoded) # encoded is now class 'bytes'
 
     return encoded.decode()
 
+
 def main():
     '''
-    Run the program
+    Runs and tests the program.
 
     Inputs: none
 
@@ -45,5 +49,7 @@ def main():
     else:
         print("Failure :-(")
 
+
+#---RUN---#
 if __name__ == '__main__':
     main()
