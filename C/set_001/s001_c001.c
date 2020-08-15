@@ -15,7 +15,6 @@
 
 
 /* CONSTANTS */
-char* b16 = "0123456789abcdef";
 char* b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 char* test = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
@@ -23,8 +22,7 @@ char* expected_out = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2
 
 
 /* FUNCTIONS */
-
-// convert hex char to int
+// unhex: convert hex char to int
 int unhex(char ch)
 {
     if (ch >= '0' && ch <= '9') {
@@ -39,9 +37,8 @@ int unhex(char ch)
     return -1;
 }
 
-// decode hex
-void b16decode(char* instr, char* outstr, int inlen) {
-
+// b16encode: decode hex
+void b16decode(char* instr, char* outstr, unsigned inlen) {
     char temp1;
     unsigned j = 0;
     for (unsigned i=0; i < inlen; i+=2) {
@@ -52,20 +49,69 @@ void b16decode(char* instr, char* outstr, int inlen) {
     outstr[j] = '\0';
 }
 
-// encode b64
-void b64encode(char* str);
+// b64encode: encode b64
+void b64encode(char* instr, char* outstr, unsigned inlen, unsigned outlen) {
+    char in1, in2, in3;
+    unsigned bitstring, j = 0; 
 
-void b16tob64(char* input) {
-    int inlen = strlen(input);
+    for (unsigned i=0; i < inlen; i+=3) {
+        in1 = instr[i];
+        if (instr[i+1]) {
+            in2 = instr[i+1];
+            if (instr[i+2]) {
+                in3 = instr[i+2];
+            }
+            else {
+                in3 = 0;
+            }
+        }
+        else {
+            in2 = 0;
+            in3 = 0;
+        }
+        bitstring = (in1 << 16) | (in2 << 8) | in3;
 
-    char decoded[inlen/2 + 1];
+        outstr[j] = b64[(bitstring >> 18) & 0x3F];
+        outstr[++j] = b64[(bitstring >> 12) & 0x3F];
+
+        if (++j < outlen + 1) {
+            outstr[j] = b64[(bitstring >> 6) & 0x3F];
+            if (++j < outlen + 1) {
+                outstr[j] = b64[bitstring & 0x3F];
+            }
+        } 
+        j++;
+    }
+    outstr[j] = '\0';
+}
+
+char* b16tob64(char* input) {
+    unsigned inlen = strlen(input);
+    unsigned declen = inlen/2;
+    unsigned enclen = (declen * 4) / 3 + !!((declen * 4) % 3);
+
+    char decoded[declen+1];
     b16decode(input, decoded, inlen);
-
-    // char encoded;
-
-    printf("%s\n", decoded);
+    
+    char* encoded = (char*) malloc(sizeof(char) * (enclen+1));
+    b64encode(decoded, encoded, declen, enclen); 
+    return encoded;       
 }
 
 int main() {
-    b16tob64(test);
+    char* actual_out = b16tob64(test);
+
+    printf("input: %s\n", test);
+    printf("expected output: %s\n", expected_out);
+    printf("actual output: %s\n", actual_out);
+
+    if (strcmp(actual_out, expected_out) == 0) {
+        printf("Success!\n");
+    }
+    else {
+        printf("Failure :-(\n");
+    }
+
+    free(actual_out);
+    return 0;
 }
