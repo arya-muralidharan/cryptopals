@@ -11,6 +11,11 @@
 import base64
 
 
+#---CONSTANTS---#
+TEST = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
+EXPECTED_OUT = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
+
+
 #---FUNCTIONS---#
 def hex_to_base64(str):
     '''
@@ -35,16 +40,13 @@ def main():
 
     Returns: none
     '''
-    test = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
-    expected_out = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
+    actual_out = hex_to_base64(TEST)
 
-    actual_out = hex_to_base64(test)
-
-    print("input: ", test)
-    print("expected output: ", expected_out)
+    print("input: ", TEST)
+    print("expected output: ", EXPECTED_OUT)
     print("actual output: ", actual_out)
 
-    if actual_out == expected_out:
+    if actual_out == EXPECTED_OUT:
         print("Success!")
     else:
         print("Failure :-(")
