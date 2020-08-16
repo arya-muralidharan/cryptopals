@@ -15,8 +15,6 @@
 
 
 /* CONSTANTS */
-char* b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
 char* test = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
 char* expected_out = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
 
@@ -51,6 +49,7 @@ void b16decode(char* instr, char* outstr, unsigned inlen) {
 
 // b64encode: encode b64
 void b64encode(char* instr, char* outstr, unsigned inlen, unsigned outlen) {
+    char* b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     char in1, in2, in3;
     unsigned bitstring, j = 0; 
 
