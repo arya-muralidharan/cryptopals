@@ -40,7 +40,7 @@ void b16decode(char* instr, char* outstr, unsigned inlen) {
     char temp1;
     unsigned j = 0;
     for (unsigned i=0; i < inlen; i+=2) {
-        temp1 = unhex(instr[i]) * 16 + unhex(instr[i+1]);
+        temp1 = (unhex(instr[i]) << 4) | unhex(instr[i+1]);
         outstr[j] = temp1;
         j++;
     }
@@ -87,7 +87,7 @@ void b64encode(char* instr, char* outstr, unsigned inlen, unsigned outlen) {
 char* b16tob64(char* input) {
     unsigned inlen = strlen(input);
     unsigned declen = inlen/2;
-    unsigned enclen = (declen * 4) / 3 + !!((declen * 4) % 3);
+    unsigned enclen = (declen << 2) / 3 + !!((declen << 2) % 3);
 
     char decoded[declen+1];
     b16decode(input, decoded, inlen);
