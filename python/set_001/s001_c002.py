@@ -3,12 +3,8 @@
 # Author: Arya Muralidharan
 # Date: 2020-09-07
 
-# Cryptopals Rule: 
-# Always operate on raw bytes, never on encoded strings. 
-# Only use hex and base64 for pretty-printing.
-
 #---MODULES---#
-
+# N/A
 
 #---CONSTANTS---#
 INPUT_1 = "1c0111001f010100061a024b53535009181c"
