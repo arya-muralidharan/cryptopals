@@ -15,8 +15,8 @@
 
 
 /* CONSTANTS */
-char* test = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
-char* expected_out = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
+char* TEST = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
+char* EXPECTED_OUT = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
 
 
 /* FUNCTIONS */
@@ -98,13 +98,13 @@ char* b16tob64(char* input) {
 }
 
 int main() {
-    char* actual_out = b16tob64(test);
+    char* actual_out = b16tob64(TEST);
 
-    printf("input: %s\n", test);
-    printf("expected output: %s\n", expected_out);
+    printf("input: %s\n", TEST);
+    printf("expected output: %s\n", EXPECTED_OUT);
     printf("actual output: %s\n", actual_out);
 
-    if (strcmp(actual_out, expected_out) == 0) {
+    if (strcmp(actual_out, EXPECTED_OUT) == 0) {
         printf("Success!\n");
     }
     else {
