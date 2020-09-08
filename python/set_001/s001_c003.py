@@ -14,8 +14,8 @@ TEST = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 #---FUNCTIONS---#
 def phrase_score(b_input):
     '''
-    Calculate the score of a string based on letter (and space) frequency.
-    (h/t https://en.wikipedia.org/wiki/Letter_frequency)
+    Calculate the English score of a string using letter and space frequency.
+    (H/t https://en.wikipedia.org/wiki/Letter_frequency.)
 
     Inputs: 
         str: a string (in hex)
@@ -31,19 +31,20 @@ def phrase_score(b_input):
         'z': 0.00074, ' ': 0.19000
         }
     
-    return sum([freq.get(chr(byte), 0) for byte in b_input.lower()])
+    return sum([freq.get(chr(b), 0) for b in b_input.lower()])
 
 
 def find_key(str):
     '''
-    Find the key used to XOR-encrypt a given hex string; decrypt the string.
+    Find the key used to XOR-encrypt a given hex string.
 
     Inputs: 
         str: a string (in hex)
 
     Returns: a tuple
         key: the key (int)
-        message: the decrypted message (string)
+        message: the decrypted message (bytestring)
+        score: the frequency score (float)
     
     '''
     b_str = bytes.fromhex(str)
@@ -62,9 +63,10 @@ def find_key(str):
     best = decodings[0]
 
     key = best['key']
-    message = best['msg'].decode()
+    message = best['msg']
+    score = best['score']
 
-    return key, message
+    return key, message, score
 
 
 def main():
@@ -75,8 +77,8 @@ def main():
 
     Returns: none
     '''
-    key, message = find_key(TEST)
-    print("key: %c; message: %s" % (key, message))
+    key, message, score = find_key(TEST)
+    print("key: %d; message: %s; score: %s" % (key, message.decode(), score))
 
 
 #---RUN---#
