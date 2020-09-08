@@ -1,5 +1,5 @@
 # File name: s001_c004.py
-# Description: Cryptopals Set 1, Challenge 4 - Single-byte XOR cipher
+# Description: Cryptopals Set 1, Challenge 4 - Detect single-character XOR
 # Author: Arya Muralidharan
 # Date: 2020-09-08
 
