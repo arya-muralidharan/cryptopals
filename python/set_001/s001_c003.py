@@ -45,7 +45,6 @@ def find_key(str):
         key: the key (int)
         message: the decrypted message (bytestring)
         score: the frequency score (float)
-    
     '''
     b_str = bytes.fromhex(str)
     decodings = []
@@ -78,7 +77,8 @@ def main():
     Returns: none
     '''
     key, message, score = find_key(TEST)
-    print("key: %d; message: %s; score: %s" % (key, message.decode(), score))
+    message = message.decode()
+    print("key: %d\nmessage: %s\nscore: %s" % (key, message, score))
 
 
 #---RUN---#
