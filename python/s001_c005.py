@@ -3,6 +3,7 @@
 # Author: Arya Muralidharan
 # Date: 2020-09-08
 
+
 #---MODULES---#
 # N/A
 
@@ -16,22 +17,19 @@ EXPECTED = "0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a2622632427
 
 
 #---FUNCTIONS---#
-def implement_repeating_xor(str, key):
+def implement_repeating_xor(string, key):
     '''
-    Find and decrypt the single-character XOR-encrypted string in a file.
+    Encrypts text using repeating-key XOR.
 
     Inputs: 
-        file: the file or webpage containing the strings of uniform length
+        string: the string to encrypt (str)
+        key: the key to encrypt with (str)
 
-    Returns: a tuple
-        key: the key (int)
-        message: the decrypted message (bytestring)
-        score: the frequency score (float)
-        line: the encrypted line (string)
+    Returns: the encrypted hexstring (str)
     '''
     encoded = []
     i = 0
-    for b in str:
+    for b in string:
         encoded.append(ord(key[i]) ^ ord(b))
         i = i + 1 if i < len(key) - 1 else 0
 

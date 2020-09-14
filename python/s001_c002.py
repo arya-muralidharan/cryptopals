@@ -3,6 +3,7 @@
 # Author: Arya Muralidharan
 # Date: 2020-09-07
 
+
 #---MODULES---#
 # N/A
 
@@ -19,10 +20,10 @@ def fixed_xor(str1, str2):
     Takes two equal-length buffers and produces their XOR combination.
 
     Inputs: 
-        str1: a string (in hex)
-        str2: a string (in hex)
+        str1: a hexstring (str)
+        str2: a hexstring (str)
 
-    Returns: a string (in hex)
+    Returns: a hexstring (str)
     '''
     b_str1 = bytes.fromhex(str1)
     b_str2 = bytes.fromhex(str2)

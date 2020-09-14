@@ -7,26 +7,28 @@
 # Always operate on raw bytes, never on encoded strings. 
 # Only use hex and base64 for pretty-printing.
 
+
 #---MODULES---#
 import base64
 
 
 #---CONSTANTS---#
-TEST = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
-EXPECTED_OUT = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
+TEST = "49276d206b696c6c696e6720796f757220627261696e206c" \
+    "696b65206120706f69736f6e6f7573206d757368726f6f6d"
+EXPECTED = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
 
 
 #---FUNCTIONS---#
-def hex_to_base64(str):
+def hex_to_base64(string):
     '''
     Converts hex to base64.
 
     Inputs: 
-        str: a string (in hex)
+        string: a hexstring (str)
 
-    Returns: a string (in base64)
+    Returns: a b64-encoded string (str)
     '''
-    decoded = base64.b16decode(str, casefold=True)
+    decoded = base64.b16decode(string, casefold=True)
     encoded = base64.b64encode(decoded) # encoded is now class 'bytes'
 
     return encoded.decode()
@@ -43,10 +45,10 @@ def main():
     actual_out = hex_to_base64(TEST)
 
     print("input: ", TEST)
-    print("expected output: ", EXPECTED_OUT)
+    print("expected output: ", EXPECTED)
     print("actual output: ", actual_out)
 
-    if actual_out == EXPECTED_OUT:
+    if actual_out == EXPECTED:
         print("Success!")
     else:
         print("Failure :-(")

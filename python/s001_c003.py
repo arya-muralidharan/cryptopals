@@ -3,6 +3,7 @@
 # Author: Arya Muralidharan
 # Date: 2020-09-07
 
+
 #---MODULES---#
 # N/A
 
@@ -14,13 +15,13 @@ TEST = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 #---FUNCTIONS---#
 def phrase_score(b_input):
     '''
-    Calculate the English score of a string using letter and space frequency.
+    Calculates the English score of a string using letter and space frequency.
     (H/t https://en.wikipedia.org/wiki/Letter_frequency.)
 
     Inputs: 
-        str: a string (in hex)
+        b_input: a bytestring (bytes)
 
-    Returns: an int ()
+    Returns: the score (int)
     '''
     freq = {
         'a': 0.08167, 'b': 0.01492, 'c': 0.02782, 'd': 0.04253, 'e': 0.12702, 
@@ -34,38 +35,31 @@ def phrase_score(b_input):
     return sum([freq.get(chr(b), 0) for b in b_input.lower()])
 
 
-def find_key(str):
+def find_key(string):
     '''
-    Find the key used to XOR-encrypt a given hex string.
+    Finds the key used to XOR-encrypt a given hex string.
 
     Inputs: 
-        str: a string (in hex)
+        string: a hexstring (str)
 
     Returns: a tuple
         key: the key (int)
-        message: the decrypted message (bytestring)
+        message: the decrypted message (bytes)
         score: the frequency score (float)
     '''
-    b_str = bytes.fromhex(str)
-    decodings = []
+    b_str = bytes.fromhex(string)
+    max_score = 0.0
+    message = b''
+    key = 0
     for i in range(256):
         msg = bytes([b ^ i for b in b_str])
         score = phrase_score(msg)
-        temp = {
-            'msg': msg,
-            'score': score,
-            'key': i
-        }
-        decodings.append(temp)
-    
-    decodings.sort(key = lambda x: x['score'], reverse = True)
-    best = decodings[0]
+        if score > max_score:
+            max_score = score
+            key = i
+            message = msg
 
-    key = best['key']
-    message = best['msg']
-    score = best['score']
-
-    return key, message, score
+    return key, message, max_score
 
 
 def main():
