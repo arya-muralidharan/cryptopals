@@ -4,11 +4,12 @@
 # Date: 2020-09-08
 
 #---MODULES---#
-import s001_c003, urllib.request
+import s001_c003
+from urllib.request import urlopen
 
 
 #---CONSTANTS---#
-FILE = urllib.request.urlopen("https://cryptopals.com/static/challenge-data/4.txt")
+FILE = urlopen("https://cryptopals.com/static/challenge-data/4.txt")
 
 
 #---FUNCTIONS---#
