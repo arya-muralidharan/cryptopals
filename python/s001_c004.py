@@ -8,7 +8,7 @@ import s001_c003, urllib.request
 
 
 #---CONSTANTS---#
-URL = "https://cryptopals.com/static/challenge-data/4.txt"
+FILE = urllib.request.urlopen("https://cryptopals.com/static/challenge-data/4.txt")
 
 
 #---FUNCTIONS---#
@@ -25,27 +25,21 @@ def detect_xor_line(file):
         score: the frequency score (float)
         line: the encrypted line (string)
     '''
-    decodings = []
-    for l in file:
-        x = l.decode()
-        key, msg, score = s001_c003.find_key(x)
-        temp = {
-            'msg': msg,
-            'score': score,
-            'key': key,
-            'line': x
-        }
-        decodings.append(temp)
+    max_score = 0.0
+    message = b""
+    key = 0
+    line = ""
+
+    for x in file:
+        l = x.decode()
+        k, m, s = s001_c003.find_key(l)
+        if s > max_score:
+            max_score = s
+            key = k
+            message = m
+            line = l
     
-    decodings.sort(key = lambda x: x['score'], reverse = True)
-    best = decodings[0]
-
-    key = best['key']
-    message = best['msg']
-    score = best['score']
-    line = best['line']
-
-    return key, message, score, line
+    return key, message, max_score, line
 
 
 def main():
@@ -56,8 +50,7 @@ def main():
 
     Returns: none
     '''
-    f = urllib.request.urlopen(URL)
-    key, message, score, line = detect_xor_line(f)
+    key, message, score, line = detect_xor_line(FILE)
     message = message.decode()
     print("line: %skey: %d\nmessage: %sscore: %s" % (line, key, message, score))
 
