@@ -1,7 +1,7 @@
 # File name: s001_c007.py
-# Description: Cryptopals Set 1, Challenge 7- AES in ECB mode
+# Description: Cryptopals Set 1, Challenge 7 - AES in ECB mode
 # Author: Arya Muralidharan
-# Date: XXXX-XX-XX
+# Date: 2020-09-20
 
 #---MODULES---#
 from base64 import b64decode
