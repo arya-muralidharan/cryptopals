@@ -1,7 +1,7 @@
 # File name: s001_c006.py
 # Description: Cryptopals Set 1, Challenge 6 - Break repeating-key XOR
 # Author: Arya Muralidharan
-# Date: XXXX-XX-XX
+# Date: 2020-09-14
 
 #---MODULES---#
 import s001_c005, s001_c003
@@ -11,7 +11,7 @@ from urllib.request import urlopen
 
 #---CONSTANTS---#
 URL = "https://cryptopals.com/static/challenge-data/6.txt"
-TEXT = urlopen(URL).read().decode()
+TEXT = urlopen(URL).read()
 
 #---FUNCTIONS---#
 def hamming_distance(str1, str2):
@@ -88,7 +88,7 @@ def break_repeating_XOR(text):
         (2) Base64
 
     Inputs: 
-        text: the encrypted text (str)
+        text: the encrypted text (str or bytes)
 
     Returns: a tuple
         key: the key (str)
