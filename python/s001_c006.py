@@ -13,6 +13,7 @@ from urllib.request import urlopen
 URL = "https://cryptopals.com/static/challenge-data/6.txt"
 TEXT = urlopen(URL).read()
 
+
 #---FUNCTIONS---#
 def hamming_distance(str1, str2):
     '''
@@ -66,19 +67,18 @@ def find_key_size(text):
     Returns: the key size (int)
     '''
     best_ndist = 500.0
-    best_size = 0.0
+    best_size = 0
     for sz in range(2, 41):
         blocks = [text[i:i+sz+1] for i in range(0, len(text), sz)]
         edit_dist = 0
         for i in range(len(blocks)-1):
             edit_dist += hamming_distance(blocks[i], blocks[i+1])
-        ndist = (edit_dist / len(blocks)) / sz
+        ndist = (edit_dist / (len(blocks)-1)) / sz
         if ndist < best_ndist:
             best_ndist = ndist
             best_size = sz
     
     return best_size
-
 
 
 def break_repeating_XOR(text):

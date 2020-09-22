@@ -14,6 +14,7 @@ URL = "https://cryptopals.com/static/challenge-data/7.txt"
 TEXT = urlopen(URL).read()
 KEY = "YELLOW SUBMARINE"
 
+
 #---FUNCTIONS---#
 def break_aes_ecb(text, key):
     '''
