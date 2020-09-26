@@ -46,15 +46,15 @@ def main():
     '''
     actual_out = implement_repeating_xor(INPUT, KEY)
 
-    print("input:\n%s" % INPUT)
-    print("key: %s" % KEY)
-    print("expected output: %s" % EXPECTED)
-    print("actual output: %s" % actual_out)
+    print("INPUT:\n%s" % INPUT)
+    print("KEY: %s" % KEY)
+    print("EXPECTED OUTPUT: %s" % EXPECTED)
+    print("ACTUAL OUTPUT: %s" % actual_out)
 
     if actual_out == EXPECTED:
-        print("Success!")
+        print("SUCCESS!")
     else:
-        print("Failure :-(")
+        print("FAILURE :-(")
 
 
 #---RUN---#

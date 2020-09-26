@@ -54,7 +54,7 @@ def main():
     '''
     key, message, score, line = detect_xor_line(TEXT)
     message = message.decode()
-    print("line: %s\nkey: %d\nmessage: %sscore: %s" % (line, key, message, score))
+    print("LINE: %s\nKEY: %d\nMESSAGE: %sSCORE: %s" % (line, key, message, score))
 
 
 #---RUN---#

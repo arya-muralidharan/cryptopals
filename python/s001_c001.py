@@ -44,14 +44,14 @@ def main():
     '''
     actual_out = hex_to_base64(TEST)
 
-    print("input: ", TEST)
-    print("expected output: ", EXPECTED)
-    print("actual output: ", actual_out)
+    print("INPUT: ", TEST)
+    print("EXPECTED OUTPUT: ", EXPECTED)
+    print("ACTUAL OUTPUT: ", actual_out)
 
     if actual_out == EXPECTED:
-        print("Success!")
+        print("SUCCESS!")
     else:
-        print("Failure :-(")
+        print("FAILURE :-(")
 
 
 #---RUN---#

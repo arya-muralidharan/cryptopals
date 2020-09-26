@@ -43,15 +43,15 @@ def main():
     '''
     actual_out = fixed_xor(INPUT_1, INPUT_2)
 
-    print("input 1: ", INPUT_1)
-    print("input 2: ", INPUT_2)
-    print("expected output: ", EXPECTED_OUT)
-    print("actual output: ", actual_out)
+    print("INPUT 1: ", INPUT_1)
+    print("INPUT 2: ", INPUT_2)
+    print("EXPECTED OUTPUT: ", EXPECTED_OUT)
+    print("ACTUAL OUTPUT: ", actual_out)
 
     if actual_out == EXPECTED_OUT:
-        print("Success!")
+        print("SUCCESS!")
     else:
-        print("Failure :-(")
+        print("FAILURE :-(")
 
 
 #---RUN---#

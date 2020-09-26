@@ -68,8 +68,9 @@ def find_key_size(text):
     '''
     best_ndist = 500.0
     best_size = 0
+    
     for sz in range(2, 41):
-        blocks = [text[i:i+sz+1] for i in range(0, len(text), sz)]
+        blocks = [text[i:i+sz] for i in range(0, len(text), sz)]
         edit_dist = 0
         for i in range(len(blocks)-1):
             edit_dist += hamming_distance(blocks[i], blocks[i+1])

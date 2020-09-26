@@ -72,7 +72,7 @@ def main():
     '''
     key, message, score = find_key(TEST)
     message = message.decode()
-    print("key: %d\nmessage: %s\nscore: %s" % (key, message, score))
+    print("KEY: %d\nMESSAGE: %s\nSCORE: %s" % (key, message, score))
 
 
 #---RUN---#
