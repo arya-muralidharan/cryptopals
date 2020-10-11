@@ -1,7 +1,7 @@
 # File name: s002_c009.py
 # Description: Cryptopals Set 2, Challenge 9 - Implement PKCS#7 padding
 # Author: Arya Muralidharan
-# Date: 2020-XX-XX
+# Date: 2020-09-28
 
 #---MODULES---#
 from Crypto.Util.Padding import pad
@@ -50,4 +50,3 @@ def main():
 #---RUN---#
 if __name__ == '__main__':
     main()
-# %%
